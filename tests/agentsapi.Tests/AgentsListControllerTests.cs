@@ -1,4 +1,5 @@
 using Agents.Data;
+using Agents.Service;
 using agentsapi.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
