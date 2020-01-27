@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Agents.Data;
 using Agents.Data.Model;
 
 namespace Agents.Service
 {
-
-    public interface IAgentsService
-    {
-        List<Agent> Get();
-        bool CheckNameExists(string agentName);
-        void Add(Agent agent);
-        void Update(Agent agent);
-    }
     public class AgentsService : IAgentsService
     {
         private readonly IAgentsDB _db;
