@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agents.Data;
+using Agents.Data.Model;
 using Agents.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,7 +35,9 @@ namespace agentsapi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddScoped<IAgentsService, AgentsService>();
-            services.AddSingleton<IAgentsDB, AgentsDB>();
+
+            services.AddSingleton<IAgentRepository<Agent>, AgentRepository>();
+            services.AddSingleton<ICustomerRepository<Customer>, CustomerRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

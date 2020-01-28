@@ -8,28 +8,28 @@ namespace Agents.Service
 {
     public class AgentsService : IAgentsService
     {
-        private readonly IAgentsDB _db;
+        private readonly IAgentRepository<Agent> _db;
 
-        public AgentsService(IAgentsDB db)
+        public AgentsService(IAgentRepository<Agent> db)
         {
             _db = db;
         }
         public bool CheckNameExists(string agentName)
         {
-            return _db.Get().Any(a => a.Name == agentName);
+            return _db.GetAll().Any(a => a.Name == agentName);
         }
 
         public void Upsert(Agent agent)
         {
-            if (_db.Get(agent.Id) != null)
+            if (_db.GetById(agent.Id) != null)
                 _db.Update(agent);
             else
-                _db.Insert(agent);
+                _db.Create(agent);
         }
 
         public async Task<List<Agent>> Get()
         {
-            return _db.Get();
+            return _db.GetAll();
         }
     }
 }

@@ -6,6 +6,13 @@
 
   <ItemGroup>
     <None Remove="MockData\agents.json" />
+    <None Remove="MockData\customers.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MockData\customers.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

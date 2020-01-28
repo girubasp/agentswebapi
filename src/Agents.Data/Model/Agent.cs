@@ -3,10 +3,8 @@ using Newtonsoft.Json;
 
 namespace Agents.Data.Model
 {
-    public class Agent
+    public class Agent :EntityBase
     {
-        [JsonProperty("_id")]
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

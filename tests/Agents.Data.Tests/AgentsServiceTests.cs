@@ -16,9 +16,7 @@ namespace Agents.Data.Tests
         public void agents_list_calls_agents_service()
         {
             //Arrange
-            var controller = new AgentsDB();
             //Act
-            controller.Get();
         }
     }
 }
