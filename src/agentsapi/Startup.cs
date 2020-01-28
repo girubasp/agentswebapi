@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Agents.Data;
+﻿using Agents.Data;
 using Agents.Data.Model;
-using Agents.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.AzureADB2C.UI;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace agentsapi
 {
@@ -33,8 +23,6 @@ namespace agentsapi
             //services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
             //    .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddScoped<IAgentsService, AgentsService>();
 
             services.AddSingleton<IAgentRepository<Agent>, AgentRepository>();
             services.AddSingleton<ICustomerRepository<Customer>, CustomerRepository>();

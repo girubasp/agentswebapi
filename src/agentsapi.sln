@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "agentsapi.Tests", "..\tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Data.Tests", "..\tests\Agents.Data.Tests\Agents.Data.Tests.csproj", "{C6B9886D-FAA9-4834-BC9A-FAE50811374A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agents.Service", "Agents.Service\Agents.Service.csproj", "{AE454E8C-19AF-4174-B563-7AAA8AD65D2D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,10 +35,6 @@ Global
 		{C6B9886D-FAA9-4834-BC9A-FAE50811374A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6B9886D-FAA9-4834-BC9A-FAE50811374A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6B9886D-FAA9-4834-BC9A-FAE50811374A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AE454E8C-19AF-4174-B563-7AAA8AD65D2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AE454E8C-19AF-4174-B563-7AAA8AD65D2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AE454E8C-19AF-4174-B563-7AAA8AD65D2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AE454E8C-19AF-4174-B563-7AAA8AD65D2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

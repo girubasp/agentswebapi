@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace Agents.Data.Model
@@ -13,5 +14,7 @@ namespace Agents.Data.Model
         public string Balance { get; set; }
         public int Age { get; set; }
         public string EyeColor { get; set; }
+
+        //ADD props
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Agents.Data;
 using Agents.Data.Model;
-using Agents.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace agentsapi.Controllers
@@ -11,17 +11,17 @@ namespace agentsapi.Controllers
     [ApiController]
     public class AgentsListController : ControllerBase
     {
-        private readonly IAgentsService _agentsService;
+        private readonly IAgentRepository<Agent> _agentsService;
 
-        public AgentsListController(IAgentsService agentsService)
+        public AgentsListController(IAgentRepository<Agent> agentsService)
         {
             _agentsService = agentsService;
         }
         // GET api/agents
         [Microsoft.AspNetCore.Mvc.HttpGet]
-        public async Task<List<Agent>> Get()
+        public List<Agent> Get()
         {
-            return await _agentsService.Get();
+            return _agentsService.GetAll();
         }
 
         [Microsoft.AspNetCore.Mvc.HttpPut]

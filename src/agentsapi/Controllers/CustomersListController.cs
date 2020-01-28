@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Agents.Data;
 using Agents.Data.Model;
-using Agents.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace agentsapi.Controllers
@@ -34,9 +34,21 @@ namespace agentsapi.Controllers
         [Microsoft.AspNetCore.Mvc.HttpPut]
         public async Task<IActionResult> Put(Customer customer)
         {
-            _db.Update(customer);
+            if (customer.IsNew() || ValidateIfCustomerBelongsToAgent(customer))
+                _db.Upsert(customer);
             return Ok();
         }
+
+        private bool ValidateIfCustomerBelongsToAgent(Customer customer)
+        {
+            var dbcustomer = _db.GetById(customer.Id);
+            if(dbcustomer == null)
+                throw new ArgumentException("Customer not found");
+            if(dbcustomer.AgentId != customer.AgentId)
+                throw new ArgumentException("Customer does not belong to agent");
+            return true;
+        }
+
         [Microsoft.AspNetCore.Mvc.HttpDelete]
         public async Task<IActionResult> Delete(Customer customer)
         {

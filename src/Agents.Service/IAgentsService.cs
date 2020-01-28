@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Agents.Data.Model;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Threading.Tasks;
+//using Agents.Data.Model;
 
-namespace Agents.Service
-{
+//namespace Agents.Service
+//{
 
-    public interface IAgentsService
-    {
-        Task<List<Agent>> Get();
-        bool CheckNameExists(string agentName);
-        void Upsert(Agent agent);
-    }
-}
+//    public interface IAgentsService
+//    {
+//        Task<List<Agent>> Get();
+//        bool CheckNameExists(string agentName);
+//        void Upsert(Agent agent);
+//    }
+//}

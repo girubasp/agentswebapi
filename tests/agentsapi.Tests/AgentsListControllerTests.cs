@@ -1,5 +1,5 @@
 using Agents.Data;
-using Agents.Service;
+using Agents.Data.Model;
 using agentsapi.Controllers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -9,12 +9,12 @@ namespace agentsapi.Tests
     [TestClass]
     public class AgentsListControllerTests
     {
-        private Mock<IAgentsService> _agentsService;
+        private Mock<IAgentRepository<Agent>> _agentsService;
 
         [TestInitialize]
         public void Setup()
         {
-            _agentsService = new Mock<IAgentsService>();
+            _agentsService = new Mock<IAgentRepository<Agent>>();
         }
 
         [TestMethod]
@@ -25,7 +25,7 @@ namespace agentsapi.Tests
             //Act
             controller.Get();
             //Assert
-            _agentsService.Verify(a=>a.Get(),Times.Once);
+            _agentsService.Verify(a=>a.GetAll(),Times.Once);
         }
     }
 }

@@ -15,5 +15,6 @@ namespace Agents.Data
         void Delete(T entity);
 
         void Update(T entity);
+        void Upsert(T entity);
     }
 }

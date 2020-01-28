@@ -8,6 +8,11 @@ namespace Agents.Data.Model
     public abstract class EntityBase
     {
         [JsonProperty("_id")]
-        public int Id { get; protected set; }
+        public int Id { get;  set; }
+
+        public bool IsNew()
+        {
+            return Id == default(int);
+        }
     }
 }

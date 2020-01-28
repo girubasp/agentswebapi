@@ -35,9 +35,26 @@ namespace Agents.Data
             var index = Data.FindIndex(a => a.Id == entity.Id);
             Data[index] = entity;
         }
+
+        public void Upsert(T entity)
+        {
+            if (entity.IsNew())
+            {
+                entity.Id = GenerateMockId();
+                Create(entity);
+            }
+            else
+            {
+                var dbEntity = GetById(entity.Id);
+                if(dbEntity != null)
+                    Update(entity);
+                else
+                    throw new Exception($"Cannot update record that does not exist Id: {entity.Id}");
+            }
+        }
     }
 
-    public class MockDataProvider<T>
+    public class MockDataProvider<T> where T : EntityBase
     {
         private List<T> _data;
 
@@ -60,6 +77,11 @@ namespace Agents.Data
             var basePath = AppDomain.CurrentDomain.BaseDirectory;
             var jsonPath = Path.Combine(basePath, $"MockData/{jsonFileName}");
             return jsonPath;
+        }
+
+        protected int GenerateMockId()
+        {
+            return Data.Max(a => a.Id) + 1;
         }
     }
 }
