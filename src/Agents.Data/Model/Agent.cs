@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Agents.Data.Model
 {
     public class Agent
     {
+        [JsonProperty("_id")]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }

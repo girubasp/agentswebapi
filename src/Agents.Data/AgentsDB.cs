@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Agents.Data.Model;
 using Newtonsoft.Json;
 
@@ -16,6 +17,16 @@ namespace Agents.Data
             return jsonPath;
         }
 
+        private List<Agent> data
+        {
+            get
+            {
+                if (_data == null)
+                    Get();
+                return _data;
+            }
+
+        }
         public List<Agent> Get()
         {
             if (_data == null || _data.Count == 0)
@@ -26,16 +37,26 @@ namespace Agents.Data
 
             return _data;
         }
-
-        public void Update(List<Agent> agent)
+        public Agent Get(int agentId)
         {
-            _data = agent;
+            return data.FirstOrDefault(a => a.Id == agentId);
+        }
+        public void Insert(Agent agent)
+        {
+            data.Add(agent);
+        }
+        public void Update(Agent agent)
+        {
+            var index = data.FindIndex(a => a.Id == agent.Id);
+            data[index] = agent;
         }
     }
 
     public interface IAgentsDB
     {
         List<Agent> Get();
-        void Update(List<Agent> agent);
+        Agent Get(int agentId);
+        void Insert(Agent agent);
+        void Update(Agent agent);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Agents.Data;
+using System.Threading.Tasks;
 using Agents.Data.Model;
 using Agents.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace agentsapi.Controllers
 {
     //[Authorize]
-    [Route("api/agents")]
+    [Microsoft.AspNetCore.Mvc.Route("api/agents")]
     [ApiController]
     public class AgentsListController : ControllerBase
     {
@@ -18,23 +18,17 @@ namespace agentsapi.Controllers
             _agentsService = agentsService;
         }
         // GET api/agents
-        [HttpGet]
-        public List<Agent> Get()
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        public async Task<List<Agent>> Get()
         {
-            return _agentsService.Get(); 
+            return await _agentsService.Get();
         }
 
-        [HttpPost]
-        public ActionResult Add(Agent agent)
+        [Microsoft.AspNetCore.Mvc.HttpPut]
+        public async Task<IActionResult> Put(Agent agent)
         {
-            if (agent.Id > 0)
-                if (!_agentsService.CheckNameExists(agent.Name))
-                    _agentsService.Add(agent);
-                else
-                    return BadRequest($"{agent.Name} already exists. Please choose a different name");
-            else
-                _agentsService.Update(agent);
-            return Ok(_agentsService.Get());
+            _agentsService.Upsert(agent);
+            return Ok();
         }
     }
 }

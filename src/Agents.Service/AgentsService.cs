@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Agents.Data;
 using Agents.Data.Model;
 
@@ -18,21 +19,15 @@ namespace Agents.Service
             return _db.Get().Any(a => a.Name == agentName);
         }
 
-        public void Add(Agent agent)
+        public void Upsert(Agent agent)
         {
-            var dbAgents = _db.Get();
-            dbAgents.Add(agent);
-            _db.Update(dbAgents);
+            if (_db.Get(agent.Id) != null)
+                _db.Update(agent);
+            else
+                _db.Insert(agent);
         }
 
-        public void Update(Agent agent)
-        {
-            var dbAgents = _db.Get();
-            dbAgents[dbAgents.FindIndex(a => a.Id == agent.Id)] = agent;
-            _db.Update(dbAgents);
-        }
-
-        public List<Agent> Get()
+        public async Task<List<Agent>> Get()
         {
             return _db.Get();
         }
